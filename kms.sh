@@ -31,7 +31,7 @@ echo "export PATH=/usr/local/KMS/vlmcsd/binaries/Linux/intel/static:\$PATH" > /e
 source /etc/profile.d/vlmcs.sh
 chmod +x /usr/local/KMS/vlmcsd/binaries/Linux/intel/static/*
 echo "vlmcsd-x64-musl-static" >> /etc/rc.local
-vlmcsd-x64-musl-static
+nohup vlmcsd-x64-musl-static &
 #Check vlmcsd status
 PIDS=`ps -ef |grep vlmcsd |grep -v grep | awk '{print $2}'`
 if [ "$PIDS" != "" ]; then
