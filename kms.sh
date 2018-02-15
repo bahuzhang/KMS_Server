@@ -33,6 +33,9 @@ chmod +x /usr/local/KMS/vlmcsd/binaries/Linux/intel/static/*
 echo "vlmcsd-x64-musl-static" >> /etc/rc.local
 nohup vlmcsd-x64-musl-static &
 #Check vlmcsd status
+sleep 1
+echo "Check vlmcsd status..."
+sleep 1
 PIDS=`ps -ef |grep vlmcsd |grep -v grep | awk '{print $2}'`
 if [ "$PIDS" != "" ]; then
   echo "vlmcsd is runing!"
