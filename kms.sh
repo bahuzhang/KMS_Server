@@ -6,7 +6,7 @@ echo "    ################################################"
 echo "    #                                              #"
 echo "    #               Build KMS Server               #"
 echo "    #                https://pa.ci                 #"
-echo "    #                 Version 0.1                  #"
+echo "    #                 Version 0.2                  #"
 echo "    ################################################"
 #Prepare the installation environment
 echo -e ""
@@ -21,6 +21,12 @@ else
   echo "This release is not supported."
   exit
 fi
+#Check instruction
+if getconf LONG_BIT | grep -Eqi "64"; then
+  arch=64
+else
+  arch=32
+fi
 #Build KMS Server
 git clone https://github.com/uselibrary/KMS_Server
 mv KMS_Server vlmcsd
@@ -30,8 +36,13 @@ ln -sv /usr/local/vlmcsd/ /usr/local/KMS/
 echo "export PATH=/usr/local/KMS/vlmcsd/binaries/Linux/intel/static:\$PATH" > /etc/profile.d/vlmcs.sh
 source /etc/profile.d/vlmcs.sh
 chmod +x /usr/local/KMS/vlmcsd/binaries/Linux/intel/static/*
-echo "vlmcsd-x64-musl-static" >> /etc/rc.local
-nohup vlmcsd-x64-musl-static &
+if [ "$arch" -eq 32 ]; then
+  echo "vlmcsd-x86-musl-static" >> /etc/rc.local
+  nohup vlmcsd-x86-musl-static &
+else
+  echo "vlmcsd-x64-musl-static" >> /etc/rc.local
+  nohup vlmcsd-x64-musl-static &
+fi
 #Check vlmcsd status
 sleep 1
 echo "Check vlmcsd status..."
