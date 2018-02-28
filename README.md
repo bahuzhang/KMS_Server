@@ -1,10 +1,18 @@
 # KMS Server
 
-`version 0.2`
+`version 0.3`
 
 It is a Shell Script which can build a KMS Server automatically.
 
-Please note that this script can only run on `x64` and `x86` architecture Linux OS. Multiplatform script is coming soon.
+The following hardware platforms and operating systems are supported. More  hardware platforms and operating systems are coming.
+
+| Hardware Platform | Operating System     |
+| ----------------- | -------------------- |
+| x86/i386          | Debian、Ubuntu、CentOS |
+| x86-64/amd64      | Debian、Ubuntu、CentOS |
+| Raspberry pi      | Raspbian             |
+
+
 
 `HOW TO USE`
 
