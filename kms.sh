@@ -37,17 +37,17 @@ if cat /etc/*-release | grep -Eqi "raspbian"; then
   echo "export PATH=/usr/local/KMS/vlmcsd/binaries/Linux/arm/little-endian/glibc:\$PATH" > /etc/profile.d/vlmcs.sh
   source /etc/profile.d/vlmcs.sh
   chmod +x /usr/local/KMS/vlmcsd/binaries/Linux/arm/little-endian/glibc/*
-  echo "vlmcsd-armv6hf-Raspberry-glibc" >> /etc/rc.local
+  echo "nohup vlmcsd-armv6hf-Raspberry-glibc &" >> /etc/rc.local
   nohup vlmcsd-armv6hf-Raspberry-glibc &
 else
   echo "export PATH=/usr/local/KMS/vlmcsd/binaries/Linux/intel/static:\$PATH" > /etc/profile.d/vlmcs.sh
   source /etc/profile.d/vlmcs.sh
   chmod +x /usr/local/KMS/vlmcsd/binaries/Linux/intel/static/*
   if [ "$arch" -eq 32 ]; then
-    echo "vlmcsd-x86-musl-static" >> /etc/rc.local
+    echo "nohup vlmcsd-x86-musl-static &" >> /etc/rc.local
     nohup vlmcsd-x86-musl-static &
   else
-    echo "vlmcsd-x64-musl-static" >> /etc/rc.local
+    echo "nohup vlmcsd-x64-musl-static &" >> /etc/rc.local
     nohup vlmcsd-x64-musl-static &
   fi
 fi
