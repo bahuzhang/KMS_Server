@@ -43,7 +43,7 @@ fi
 mv kms /usr/bin/
 chmod +x /usr/bin/kms
 kms
-echo "kms" >> /etc/rc.local
+echo -ne '\n@reboot root kms\n\n' >>/etc/crontab
 #Cleaning Work
 cd -
 rm -rf KMS_Server
