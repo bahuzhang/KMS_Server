@@ -1,6 +1,7 @@
 # KMS Server
 
-`version 0.4`
+`version 0.4.1`
+`20180502`
 
 It is a Shell Script which can build a KMS Server automatically.
 
