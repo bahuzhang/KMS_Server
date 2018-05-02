@@ -6,7 +6,7 @@ echo "    ################################################"
 echo "    #                                              #"
 echo "    #               Build KMS Server               #"
 echo "    #                https://pa.ci                 #"
-echo "    #                 Version 0.4                  #"
+echo "    #                Version 0.4.1                  #"
 echo "    ################################################"
 #Prepare the installation environment
 echo -e ""
@@ -30,22 +30,19 @@ fi
 #Build KMS Server
 git clone https://github.com/uselibrary/KMS_Server
 if cat /etc/*-release | grep -Eqi "raspbian"; then
-  cd KMS_Server/binaries/Linux/arm/little-endian/glibc/
-  cp vlmcsd-armv6hf-Raspberry-glibc kms
+  mv KMS_Server/binaries/Linux/arm/little-endian/glibc/vlmcsd-armv6hf-Raspberry-glibc kms
 else
-  cd KMS_Server/binaries/Linux/intel/glibc/
   if [ "$arch" -eq 32 ]; then
-    mv vlmcsd-x32-glibc kms
+    mv KMS_Server/binaries/Linux/intel/glibc/vlmcsd-x32-glibc kms
   else
-    mv vlmcsd-x64-glibc kms
+    mv KMS_Server/binaries/Linux/intel/glibc/vlmcsd-x64-glibc kms
   fi
 fi
 mv kms /usr/bin/
 chmod +x /usr/bin/kms
-kms
+nohup kms > /home/kms.log 2>&1 &
 echo -ne '\n@reboot root kms\n\n' >>/etc/crontab
 #Cleaning Work
-cd -
 rm -rf KMS_Server
 #Check kms server status
 sleep 1
