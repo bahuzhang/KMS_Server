@@ -41,7 +41,7 @@ fi
 mv kms /usr/bin/
 chmod +x /usr/bin/kms
 nohup kms > /home/kms.log 2>&1 &
-echo -ne '\n@reboot root kms\n\n' >>/etc/crontab
+echo -ne '\n@reboot root nohup kms > /home/kms.log 2>&1 &\n\n' >>/etc/crontab
 #Cleaning Work
 rm -rf KMS_Server
 #Check kms server status
